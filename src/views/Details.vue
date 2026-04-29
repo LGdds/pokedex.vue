@@ -44,58 +44,47 @@ const colors = {
 </script>
 
 <template>
-<div class="page">
+  <div class="page">
     <div v-if="pokemon" class="box">
-    <div class="header-actions">
+      <div class="header-actions">
         <router-link to="/" class="back">
             ⬅ Voltar
         </router-link>
-    </div>
+      </div>
+    
+  <img :src="shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default"/>
 
-<img
-:src="shiny
-? pokemon.sprites.front_shiny
-: pokemon.sprites.front_default"
-/>
+  <h1>{{ pokemon.name }}</h1>
 
-<h1>{{ pokemon.name }}</h1>
+  <button class="shiny-btn" @click="toggleShiny">
+    {{ shiny ? 'Normal ✨' : 'Shiny ✨' }}
+  </button>
 
-<button class="shiny-btn" @click="toggleShiny">
-{{ shiny ? 'Normal ✨' : 'Shiny ✨' }}
-</button>
+  <p><strong>ID:</strong> {{ pokemon.id }}</p>
+  <p><strong>Altura:</strong> {{ pokemon.height }}</p>
+  <p><strong>Peso:</strong> {{ pokemon.weight }}</p>
 
-<p><strong>ID:</strong> {{ pokemon.id }}</p>
-<p><strong>Altura:</strong> {{ pokemon.height }}</p>
-<p><strong>Peso:</strong> {{ pokemon.weight }}</p>
+  <h2>Tipos</h2>
 
-<h2>Tipos</h2>
+  <div class="types">
+    <span v-for="type in pokemon.types" :key="type.type.name" :style="{ background: colors[type.type.name] || '#555' }">
+      {{ type.type.name }}
+    </span>
+  </div>
 
-<div class="types">
-<span
-v-for="type in pokemon.types"
-:key="type.type.name"
-:style="{ background: colors[type.type.name] || '#555' }"
->
-{{ type.type.name }}
-</span>
-</div>
+  <h2>Status</h2>
 
-<h2>Status</h2>
-
-<div
-v-for="stat in pokemon.stats"
-:key="stat.stat.name"
-class="stat"
->
-{{ stat.stat.name }} - {{ stat.base_stat }}
-</div>
+  <div v-for="stat in pokemon.stats" :key="stat.stat.name" class="stat">
+    {{ stat.stat.name }} - {{ stat.base_stat }}
+  </div>
 
 </div>
-
 </div>
+
 </template>
 
 <style scoped>
+
 .header-actions {
   display: flex;
   justify-content: flex-start; /* Alinha o conteúdo à esquerda */
@@ -103,53 +92,53 @@ class="stat"
 }
 
 .page{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:30px;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
 }
 
 .box{
-background:#1e293b;
-padding:40px;
-border-radius:25px;
-width:500px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
+  background:#1e293b;
+  padding:40px;
+  border-radius:25px;
+  width:500px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
 img{
-width:180px;
-margin-bottom:15px;
+  width:180px;
+  margin-bottom:15px;
 }
 
 .back{
-display:inline-block;
-margin-bottom:20px;
-background:#ef4444;
-padding:10px 20px;
-border-radius:10px;
-color:white;
-text-decoration:none;
+  display:inline-block;
+  margin-bottom:20px;
+  background:#ef4444;
+  padding:10px 20px;
+  border-radius:10px;
+  color:white;
+  text-decoration:none;
 }
 
 .shiny-btn{
-margin:15px 0;
-padding:10px 20px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-background:gold;
-font-weight:bold;
+  margin:15px 0;
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:gold;
+  font-weight:bold;
 }
 
 .types{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-margin:20px 0;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:20px 0;
 }
 
 .types span {
@@ -162,9 +151,9 @@ margin:20px 0;
 }
 
 .stat{
-background:#334155;
-padding:10px;
-margin:8px 0;
-border-radius:10px;
+  background:#334155;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
 }
 </style>

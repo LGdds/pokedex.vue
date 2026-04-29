@@ -24,64 +24,53 @@ const colors = {
 </script>
 
 <template>
-<router-link
-:to="'/pokemon/' + pokemon.name"
-class="card"
->
-
-<img :src="pokemon.image">
-
-<h2>{{ pokemon.name }}</h2>
-
-<div class="types">
-<span
-v-for="type in pokemon.types"
-:key="type"
-:style="{background: colors[type] || '#555'}"
->
-{{ type }}
-</span>
-</div>
-
+<router-link :to="'/pokemon/' + pokemon.name" class="card">
+    <img :src="pokemon.image">
+    <h2>{{ pokemon.name }}</h2>
+    <div class="types">
+        <span v-for="type in pokemon.types" :key="type" :style="{background: colors[type] || '#555'}">
+            {{ type }}
+        </span>
+    </div>
 </router-link>
 </template>
 
 <style scoped>
 .card{
-background:#1e293b;
-padding:20px;
-border-radius:20px;
-text-align:center;
-text-decoration:none;
-color:white;
-transition:.3s;
-box-shadow:0 10px 20px rgba(0,0,0,.25);
+    background:#1e293b;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.03);
-background:#334155;
+    transform:translateY(-10px) scale(1.03);
+    background:#334155;
 }
 
 img{
-width:100px;
+    width:100px;
 }
 
 .types{
-margin-top:15px;
-display:flex;
-justify-content:center;
-gap:8px;
-flex-wrap:wrap;
+    margin-top:15px;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
 }
 
 .types span{
-padding:6px 12px;
-border-radius:20px;
-font-size:13px;
-font-weight:bold;
-color:white;
-text-transform:capitalize;
-box-shadow:0 4px 8px rgba(0,0,0,.2);
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    color:white;
+    text-transform:capitalize;
+    box-shadow:0 4px 8px rgba(0,0,0,.2);
 }
 </style>

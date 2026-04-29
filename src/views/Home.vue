@@ -37,79 +37,70 @@ const filtered = computed(() =>
 
 <template>
 <div class="container">
-
-<h1>Pokédex</h1>
-
-<SearchBar @search="search = $event" />
-
-<div v-if="loading" class="loading">
-  Carregando...
-</div>
-
-<div v-else class="grid">
-  <PokemonCard
-    v-for="pokemon in filtered"
-    :key="pokemon.name"
-    :pokemon="pokemon"
-  />
-</div>
-
+  <h1>Pokédex</h1>
+  <SearchBar @search="search = $event" />
+  <div v-if="loading" class="loading">
+    Carregando...
+  </div>
+  <div v-else class="grid">
+    <PokemonCard v-for="pokemon in filtered" :key="pokemon.name" :pokemon="pokemon"/>
+  </div>
 </div>
 </template>
 
 <style scoped>
-.container{
-width:100%;
-padding:40px 20px;
-display:flex;
-flex-direction:column;
-align-items:center;
+  .container{
+  width:100%;
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 h1{
-font-size:70px;
-margin-bottom:30px;
-color:white;
+  font-size:70px;
+  margin-bottom:30px;
+  color:white;
 }
 
 /* search */
 :deep(input){
-width:500px;
-max-width:90%;
-margin-bottom:30px;
+  width:500px;
+  max-width:90%;
+  margin-bottom:30px;
 }
 
 /* grid centralizado */
 .grid{
-display:grid;
-grid-template-columns:repeat(5, 230px);
-justify-content:center;
-gap:25px;
+  display:grid;
+  grid-template-columns:repeat(5, 230px);
+  justify-content:center;
+  gap:25px;
 }
 
 /* responsivo */
 @media(max-width:1400px){
 .grid{
-grid-template-columns:repeat(4, 230px);
+  grid-template-columns:repeat(4, 230px);
 }
 }
 
 @media(max-width:1100px){
 .grid{
-grid-template-columns:repeat(3, 230px);
+  grid-template-columns:repeat(3, 230px);
 }
 }
 
 @media(max-width:800px){
 .grid{
-grid-template-columns:repeat(2, 220px);
+  grid-template-columns:repeat(2, 220px);
 }
 }
 
 @media(max-width:500px){
 .grid{
-grid-template-columns:1fr;
-justify-items:center;
+  grid-template-columns:1fr;
+  justify-items:center;
 }
 }
 </style>
